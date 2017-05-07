@@ -8,7 +8,7 @@ function MiembroSquad(nombre,apellido,edad,id,hobbie1,hobbie2,hobbie3){
 	this.hobbie1 = hobbie1;
 	this.hobbie2 = hobbie2;
 	this.hobbie3 = hobbie3;
-	//this.foto = foto;
+	this.foto = "<img src='assets/imgs/avataressquad-0" + this.id + "_360.png'>";
 	this.caja = "<input type='text' id='boton" + this.id + "'>"; //aca se ingresa el comentario
 	this.boton = "<button id='" + this.id + "' onclick='" + /*nuevoComentario.likes() +*/ "'>Dejar Comentario</button>"; //boton dejar comentario
 }
@@ -26,14 +26,14 @@ function Comentario(id_miembro,comentario,likes){
 
 
 var lista = new Array(8);
-lista[0] = new MiembroSquad("Camila","Saez",24,1,"ver pinterest","viajar","ser darks");
-lista[1] = new MiembroSquad("Antonia","Cerda",23,2,"diseñar","ver series","dfkjhg");
-lista[2] = new MiembroSquad("Carolina","Tapia",27,3,"trekking","djgf","fkldg");
-lista[3] = new MiembroSquad("María José","Rodriguez",32,4,"ver series","ldfkhg","sdfg");
-lista[4] = new MiembroSquad("María José","Pozo",5,31,"bailar","comer","dormir");
-lista[5] = new MiembroSquad("Francisca","Ojeda",28,6,"rollerderby","dskgjh","sdlkgh");
-lista[6] = new MiembroSquad("Valentina","Saavedra",26,7,"medicina autogestiva","dlskfgh","dlfkg");
-lista[7] = new MiembroSquad("Marion","Castillo",29,8,"caminar","fdlsgj","dflkg");
+lista[0] = new MiembroSquad("Camila","Saez",24,"1","ver pinterest","viajar","ser darks");
+lista[1] = new MiembroSquad("Antonia","Cerda",23,"2","diseñar","ver series","dfkjhg");
+lista[2] = new MiembroSquad("Carolina","Tapia",27,"3","trekking","djgf","fkldg");
+lista[3] = new MiembroSquad("María José","Rodriguez",32,"4","ver series","ldfkhg","sdfg");
+lista[4] = new MiembroSquad("María José","Pozo",31,"5","bailar","comer","dormir");
+lista[5] = new MiembroSquad("Francisca","Ojeda",28,"6","rollerderby","dskgjh","sdlkgh");
+lista[6] = new MiembroSquad("Valentina","Saavedra",26,"7","medicina autogestiva","dlskfgh","dlfkg");
+lista[7] = new MiembroSquad("Marion","Castillo",29,"8","caminar","fdlsgj","dflkg");
 
 //esto no me funciona
 var miembro = document.getElementById("miembro0");
@@ -45,7 +45,7 @@ miembro.innerHTML = nuevoComentario.coment;
 
 lista.forEach(function(element){
 	var miembros = document.getElementById("miembro" + lista.indexOf(element).toString());
-	miembros.innerHTML = ("<b>Nombre: </b>" + element.nombre + "<br><b>Apellido: </b>" + element.apellido + 
+	miembros.innerHTML = (element.foto +"<br><b>Nombre: </b>" + element.nombre + "<br><b>Apellido: </b>" + element.apellido + 
 	"<br><b>Edad: </b>" + element.edad + "<br><b>Hobbies: </b>" + "<ul>" + "<li>" + element.hobbie1 + "</li>" + 
 	"<li>" + element.hobbie2 + "</li>" + "<li>" + element.hobbie3 + "</li>" + "</ul>" + element.caja +
 	 "<br>" + element.boton);
