@@ -10,44 +10,50 @@ function MiembroSquad(nombre,apellido,edad,id,hobbie1,hobbie2,hobbie3){
 	this.hobbie3 = hobbie3;
 	this.foto = "<img src='assets/imgs/avataressquad-0" + this.id + "_360.png'>";
 	this.caja = "<input type='text' id='boton" + this.id + "'>"; //aca se ingresa el comentario
-	this.boton = "<button id='" + this.id + "' onclick='" + /*nuevoComentario.likes() +*/ "'>Dejar Comentario</button>"; //boton dejar comentario
+	this.boton = "<button id='" + this.id + "' onclick='" /*+ nuevoComentario.likes()*/ + "'>Dejar Comentario</button>"; //boton dejar comentario
 }
 
 //aca no he hecho nada
-function Comentario(id_miembro,comentario,likes){
+function Comentario(id_miembro,comentario){
 	this.id_miembro = id_miembro;
 	this.comentario = comentario;
-	this.likes = function(){
-		var contador = 0;
-		return (contador + 1);
+	var contador=0;
+	this.likes = function sumar(){ 
+		contador++;
+		return contador;
 	};
 	this.botonLike = "<button onclick='" + this.likes() + "'></button>";
 }
 
 
 var lista = new Array(8);
-lista[0] = new MiembroSquad("Camila","Saez",24,"1","ver pinterest","viajar","ser darks");
-lista[1] = new MiembroSquad("Antonia","Cerda",23,"2","diseñar","ver series","dfkjhg");
-lista[2] = new MiembroSquad("Carolina","Tapia",27,"3","trekking","djgf","fkldg");
-lista[3] = new MiembroSquad("María José","Rodriguez",32,"4","ver series","ldfkhg","sdfg");
-lista[4] = new MiembroSquad("María José","Pozo",31,"5","bailar","comer","dormir");
-lista[5] = new MiembroSquad("Francisca","Ojeda",28,"6","rollerderby","dskgjh","sdlkgh");
-lista[6] = new MiembroSquad("Valentina","Saavedra",26,"7","medicina autogestiva","dlskfgh","dlfkg");
-lista[7] = new MiembroSquad("Marion","Castillo",29,"8","caminar","fdlsgj","dflkg");
+lista[0] = new MiembroSquad("Camila","Saez",24,"1","Ver pinterest","Viajar","Ser darks");
+lista[1] = new MiembroSquad("Antonia","Cerda",23,"2","Diseñar","Ver series","Lettering");
+lista[2] = new MiembroSquad("Carolina","Tapia",27,"3","Trekking","Leer","Tejer");
+lista[3] = new MiembroSquad("María José","Rodriguez",32,"4","Ver series","Bailar","Leer");
+lista[4] = new MiembroSquad("María José","Pozo",31,"5","Bailar","Comer","Dormir");
+lista[5] = new MiembroSquad("Francisca","Ojeda",28,"6","Roller derby", "Lettering", "Juegos de mesa");
+lista[6] = new MiembroSquad("Valentina","Saavedra",26,"7","Medicina autogestiva","Hacer magias","Hacerse tatuajes");
+lista[7] = new MiembroSquad("Marion","Castillo",29,"8","Caminar","Hacer series","Pintar");
+lista[8] = new MiembroSquad("Belén","Recabal",27,"9","Andar en bici","Ver series","Bullying");
 
 //esto no me funciona
-var miembro = document.getElementById("miembro0");
-var member = document.getElementById("m0");
-var coment = lista[0].caja.value;
-var nuevoComentario = new Comentario(miembro,coment);
-miembro.innerHTML = nuevoComentario.coment;
+/*var miembro = document.getElementById("miembro0");
+//var member = document.getElementById("m0");
+var coment = lista[0].caja;
+//coment.appendChild();
+var nuevoComentario = new Comentario(miembro,coment.value);
+miembro.innerHTML = nuevoComentario.comentario;*/
 
 
 lista.forEach(function(element){
 	var miembros = document.getElementById("miembro" + lista.indexOf(element).toString());
+	var coment = element.caja;
+	var nuevoComentario = new Comentario(miembros,coment.value);
 	miembros.innerHTML = (element.foto +"<br><b>Nombre: </b>" + element.nombre + "<br><b>Apellido: </b>" + element.apellido + 
 	"<br><b>Edad: </b>" + element.edad + "<br><b>Hobbies: </b>" + "<ul>" + "<li>" + element.hobbie1 + "</li>" + 
 	"<li>" + element.hobbie2 + "</li>" + "<li>" + element.hobbie3 + "</li>" + "</ul>" + element.caja +
-	 "<br>" + element.boton);
+	 "<br>" + element.boton + "<br>" + nuevoComentario.comentario + 
+	 "<div id='btn'><a href='#' onclick='sumar()'><i class='fa fa-heart' aria-hidden='true'></i></a></div>");
 });
 
